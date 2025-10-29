@@ -1,0 +1,27 @@
+flowchart TD
+  A[Agent UI (Agentspace<br/>Agent Designer prompt)] --> B[Input Parser]
+  B --> C[getBusinessesInGeofence (Vertex AI Extension -> Google Places Nearby Search)]
+  C --> D[filterByCategory]
+  D --> E[optimizeRoute (Vertex AI Extension -> Google Maps Directions Waypoints)]
+  E --> F{Output Formatter}
+  F -->|Sheets| G[Create Sheet (Sheets API via Extension)]
+  F -->|CSV| H[Generate CSV -> Upload (Drive API or GCS via Extension)]
+  G --> I[Sharable Link]
+  H --> I
+  I --> J{Delivery}
+  J -->|Slack| K[deliverToSlack (Slack Web API via Extension)]
+  J -->|Email| L[deliverToEmail (Gmail API via Extension)]
+  subgraph Agentspace Runtime
+    A
+  end
+  subgraph Vertex AI Agent Builder
+    B --> C --> D --> E --> F --> J
+  end
+  subgraph Vertex AI Extensions (Secure)
+    C
+    E
+    G
+    H
+    K
+    L
+  end
