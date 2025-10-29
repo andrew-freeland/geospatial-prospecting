@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { getBusinessesInGeofence } from "../services/getBusinessesInGeofence";
 import { optimizeRoute } from "../services/optimizeRoute";
 import { formatOutput } from "../services/formatOutput";
+import { enrichBusinesses } from "../server/services/enrich";
 
 dotenv.config();
 
@@ -53,9 +54,12 @@ app.post("/api/search", async (req, res) => {
     let businesses = await getBusinessesInGeofence(origin, radius, { maxPages: 3 });
     businesses = businesses.slice(0, 23);
 
+    // Enrich businesses with phone & website details
+    const enriched = await enrichBusinesses(businesses);
+
     // Determine route destination
     const dest = mode === "route" && destination ? destination : origin;
-    const route = await optimizeRoute(origin, businesses);
+    const route = await optimizeRoute(origin, enriched);
     // For a linear route, we could set destination but our optimizeRoute returns loop from origin.
     const table = formatOutput(route);
     res.json({ route, table, count: route.stops.length });

@@ -6,5 +6,8 @@ export interface BusinessRecord {
   primaryCategory: string;
   types: string[];
   mapUrl: string;
+  formattedPhoneNumber?: string;
+  internationalPhoneNumber?: string;
+  website?: string;
 }
 

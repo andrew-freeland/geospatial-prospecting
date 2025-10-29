@@ -21,7 +21,7 @@ export async function RoutePlan(inputs: GeofenceInputs): Promise<{ preview: { he
   // Cap to keep Directions efficient (origin+dest+waypoints limit)
   records = records.slice(0, 23);
 
-  const route = await optimizeRoute({ lat, lng, label }, records);
+  const route = await optimizeRoute({ lat, lng }, records);
   const table = formatOutput(route);
 
   const wantSheet = (inputs.output ?? "sheet") === "sheet" || inputs.output === "both";

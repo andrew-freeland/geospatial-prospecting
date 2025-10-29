@@ -3,45 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Geofence Route Generator</title>
+  <title>Geospatial Lead Generator – Route Optimizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
+  <div class="background">
+    <div class="gradient-orb gradient-orb-1"></div>
+    <div class="gradient-orb gradient-orb-2"></div>
+  </div>
+  
   <main class="container">
-    <h1>Geofence Route Generator</h1>
-    <form id="search-form">
-      <div class="mode-toggle">
-        <label><input type="radio" name="mode" value="radius" checked /> Radius Mode</label>
-        <label><input type="radio" name="mode" value="route" /> Route Mode</label>
-      </div>
+    <header class="hero">
+      <h1 class="hero-title">Geospatial Lead Generator<br>Route Optimizer</h1>
+      <p class="hero-subtitle">Find nearby prospects and plan your route efficiently</p>
+    </header>
 
-      <div class="field">
-        <label>Origin Address</label>
-        <input id="origin" type="text" placeholder="Address or lat,lng" required />
-      </div>
-      <div class="field route-only" style="display:none;">
-        <label>Destination Address</label>
-        <input id="destination" type="text" placeholder="Address or lat,lng" />
-      </div>
-      <div class="field">
-        <label>Radius (miles)</label>
-        <input id="radius" type="number" min="2" max="10" value="5" />
-      </div>
+    <div class="form-card">
+      <form id="search-form" class="search-form">
+        <div class="mode-toggle">
+          <label class="mode-option">
+            <input type="radio" name="mode" value="radius" checked />
+            <span class="mode-text">Radius Mode</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="mode" value="route" />
+            <span class="mode-text">Route Mode</span>
+          </label>
+        </div>
 
-      <button type="submit">Find Leads</button>
-    </form>
+        <div class="form-fields">
+          <div class="field">
+            <label class="field-label">Origin Address</label>
+            <input id="origin" type="text" placeholder="Address, lat,lng, or Google Maps link" required class="field-input" />
+          </div>
+          <div class="field route-only" style="display:none;">
+            <label class="field-label">Destination Address</label>
+            <input id="destination" type="text" placeholder="Address, lat,lng, or Google Maps link" class="field-input" />
+          </div>
+          <div class="field">
+            <label class="field-label">Radius (miles)</label>
+            <input id="radius" type="number" min="2" max="10" value="5" class="field-input" />
+          </div>
+        </div>
 
-    <div id="results" class="results" hidden>
-      <div class="actions">
-        <button id="download-csv">Download CSV</button>
-      </div>
-      <table>
-        <thead>
-          <tr id="thead"></tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
+        <button type="submit" class="submit-button">
+          <span class="button-text">Find Leads</span>
+          <div class="button-glow"></div>
+        </button>
+      </form>
     </div>
+
+    <div id="results" class="results-card" hidden>
+      <div class="results-header">
+        <h2 class="results-title">Search Results</h2>
+        <button id="download-csv" class="download-button">
+          <span class="button-text">Download CSV</span>
+          <div class="button-glow"></div>
+        </button>
+      </div>
+      <div class="table-container">
+        <table class="results-table">
+          <thead>
+            <tr id="thead"></tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <p class="footer-text">
+        Built for BBP lead generation. All configuration is managed by administrators. Intended for local use; not designed for scale or commercial sale.
+      </p>
+    </footer>
   </main>
 
   <script src="/script.js" type="module"></script>
