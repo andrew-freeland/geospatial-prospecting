@@ -27,7 +27,8 @@ export async function getBusinessesInGeofence(
     const params: Record<string, string | number | boolean> = {
       location: `${origin.lat},${origin.lng}`,
       radius: radiusMeters,
-      opennow: false
+      opennow: false,
+      key: process.env.GOOGLE_PLACES_API_KEY || ""
     };
     if (opts?.typeHint) params.type = opts.typeHint;
     if (pageToken) params.pagetoken = pageToken;

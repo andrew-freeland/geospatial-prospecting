@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geofence Route Generator</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Geofence Route Generator</h1>
+    <form id="search-form">
+      <div class="mode-toggle">
+        <label><input type="radio" name="mode" value="radius" checked /> Radius Mode</label>
+        <label><input type="radio" name="mode" value="route" /> Route Mode</label>
+      </div>
+
+      <div class="field">
+        <label>Origin Address</label>
+        <input id="origin" type="text" placeholder="Address or lat,lng" required />
+      </div>
+      <div class="field route-only" style="display:none;">
+        <label>Destination Address</label>
+        <input id="destination" type="text" placeholder="Address or lat,lng" />
+      </div>
+      <div class="field">
+        <label>Radius (miles)</label>
+        <input id="radius" type="number" min="2" max="10" value="5" />
+      </div>
+
+      <button type="submit">Find Leads</button>
+    </form>
+
+    <div id="results" class="results" hidden>
+      <div class="actions">
+        <button id="download-csv">Download CSV</button>
+      </div>
+      <table>
+        <thead>
+          <tr id="thead"></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="/script.js" type="module"></script>
+</body>
+</html>
+

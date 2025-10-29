@@ -23,7 +23,8 @@ export async function optimizeRoute(
     destination: `${origin.lat},${origin.lng}`,
     waypoints: `optimize:true|${waypoints.join("|")}`,
     mode: "driving",
-    departure_time: "now"
+    departure_time: "now",
+    key: process.env.GOOGLE_DIRECTIONS_API_KEY || ""
   };
 
   // Placeholder: call via Vertex AI Extension named ext-google-directions
